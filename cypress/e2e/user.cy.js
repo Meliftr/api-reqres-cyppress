@@ -3,13 +3,19 @@ describe('test api reqres', () => {
         cy.request("GET", "https://reqres.in/api/users?page=2")
         .then((response) => {
             expect(response.status).to.eq(200)
+
         })
     })
 
-    it('get single user', () => {
+    it.only('get single user', () => {
         cy.request("GET", "https://reqres.in/api/users/2")
         .then((response) => {
             expect(response.status).to.eq(200)
+            expect(response.body.data).to.have.property('id', 2)
+            expect(response.body.data).to.have.property("email", "janet.weaver@reqres.in")
+            expect(response.body.data).to.have.property("first_name", "Janet")
+            expect(response.body.data).to.have.property("last_name", "Weaver")
+            expect(response.body.data).to.have.property("avatar", "https://reqres.in/img/faces/2-image.jpg")
         })
     })
 
