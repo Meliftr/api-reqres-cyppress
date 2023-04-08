@@ -1,13 +1,19 @@
 describe('test api reqres', () => {
-    it('get list user', () => {
+    it.only('get list user', () => {
         cy.request("GET", "https://reqres.in/api/users?page=2")
         .then((response) => {
             expect(response.status).to.eq(200)
+            expect(response.body).to.have.property("page", 2)
+            expect(response.body).to.have.property("per_page", 6)
+            expect(response.body).to.have.property("total", 12)
+            expect(response.body).to.have.property("total_pages", 2)
+            expect(response.body.data[0]).has.property('id', 7)
+            expect(response.body.data[1]).has.property("email", "lindsay.ferguson@reqres.in")
 
         })
     })
 
-    it.only('get single user', () => {
+    it('get single user', () => {
         cy.request("GET", "https://reqres.in/api/users/2")
         .then((response) => {
             expect(response.status).to.eq(200)

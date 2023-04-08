@@ -3,6 +3,12 @@ describe('test api resaurce reqres', () => {
         cy.request("GET", "https://reqres.in/api/unknown")
         .then((response) => {
             expect(response.status).to.eq(200)
+            expect(response.body).to.have.property("page", 2)
+            expect(response.body).to.have.property("per_page", 6)
+            expect(response.body).to.have.property("total", 12)
+            expect(response.body).to.have.property("total_pages", 2)
+            expect(response.body.data[0]).has.property('id', 1)
+            expect(response.body.data[1]).has.property( "name", "fuchsia rose")
         })
     })
 
