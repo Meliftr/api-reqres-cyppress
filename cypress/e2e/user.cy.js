@@ -1,6 +1,6 @@
 describe('test api reqres', () => {
-    it.only('get list user', () => {
-        cy.request("GET", "https://reqres.in/api/users?page=2")
+    it('get list user', () => {
+        cy.request("GET", "/api/users?page=2")
         .then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body).to.have.property("page", 2)
@@ -14,7 +14,7 @@ describe('test api reqres', () => {
     })
 
     it('get single user', () => {
-        cy.request("GET", "https://reqres.in/api/users/2")
+        cy.request("GET", "/api/users/2")
         .then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body.data).to.have.property('id', 2)
@@ -29,7 +29,7 @@ describe('test api reqres', () => {
         cy.request
         ({
             method: 'GET',
-            url: 'https://reqres.in/api/users/23',
+            url: '/api/users/23',
             failOnStatusCode: false
         })
         .then((response) => {
@@ -39,7 +39,7 @@ describe('test api reqres', () => {
     })
 
     it('post create user', () => {
-        cy.request("POST", "https://reqres.in/api/users", {"name": "morpheus", "job": "leader"})
+        cy.request("POST", "/api/users", {"name": "morpheus", "job": "leader"})
         .then((response) =>{
             expect(response.status).to.eq(201)
             expect(response.body).to.have.property('name', 'morpheus')
@@ -48,7 +48,7 @@ describe('test api reqres', () => {
     })
 
     it('put update user', () => {
-        cy.request("PUT", "https://reqres.in/api/users/2", {"name": "morpheus", "job": "zion resident"})
+        cy.request("PUT", "/api/users/2", {"name": "morpheus", "job": "zion resident"})
         .then((response) =>{
             expect(response.status).to.eq(200)
             expect(response.body).to.have.property('name', 'morpheus')
@@ -57,7 +57,7 @@ describe('test api reqres', () => {
     })
 
     it('patch update user', () => {
-        cy.request("PATCH", "https://reqres.in/api/users/2", {"name": "morpheus", "job": "zion resident"})
+        cy.request("PATCH", "/api/users/2", {"name": "morpheus", "job": "zion resident"})
         .then((response) =>{
             expect(response.status).to.eq(200)
             expect(response.body).to.have.property('name', 'morpheus')
@@ -66,7 +66,7 @@ describe('test api reqres', () => {
     })
 
     it('delete user', () => {
-        cy.request("DELETE", "https://reqres.in/api/users/2")
+        cy.request("DELETE", "/api/users/2")
         .then((response) =>{
             expect(response.status).to.eq(204)
         })

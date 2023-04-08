@@ -2,7 +2,7 @@ describe('test api login reqres', () => {
   it('post login succes', () => {
       cy.request({
           method: 'POST',
-          url: 'https://reqres.in/api/login',
+          url: '/api/login',
           body:
           {
               "email": "eve.holt@reqres.in",
@@ -18,7 +18,7 @@ describe('test api login reqres', () => {
   it('post login unseccess', () => {
       cy.request({
           method: 'POST',
-          url: 'https://reqres.in/api/login',
+          url: '/api/login',
           failOnStatusCode: false,
           body:
           {
